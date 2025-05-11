@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Mother's Day, Mom! ❤️</title>
+    <style>
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: #17da27;
+            color: #af1a1a;
+            margin: 0;
+            padding: 20px,;
+        }
+        h1 {
+            font-size: 3em;
+            animation: pulse 2s infinite;
+        }
+        .photo-slider {
+            margin: 20px auto;
+            max-width: 500px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .photo-slider img {
+            width: 100%;
+            display: none;
+            border-radius: 10px;
+        }
+        .photo-slider img.active {
+            display: block;
+            animation: fadeIn 1.5s;
+        }
+        button {
+            background: #ff6b81;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        button:hover {
+            background: #d23669;
+        }
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: float 6s ease-in infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+            h2{color: yellow;
+            }
+            ]
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Mother's Day, Mom! ❤️</h1>
+    <p>You're the most amazing mom in the world. Thank you for everything!</p>
+
+     <h2>SAP-TECH </h2>
+    <div class="photo-slider">
+        <img src="image/mom.jpg" class="active" alt="Mom ">
+        <img src="image/mom.jpg" alt="photo">
+        <img src="image/mom.jpg" alt="Special moment">
+    </div>
+    
+    <button id="prevBtn">Previous</button>
+    <button id="nextBtn">Next</button>
+    
+    <div class="hearts" id="hearts"></div>
+    <footer> <h1> Powered by Sap Technologies</h1></footer>
+    
+    <script>
+        // Photo slider
+        const photos = document.querySelectorAll('.photo-slider img');
+        let currentPhoto = 0;
+        
+        function showPhoto(index) {
+            photos.forEach(photo => photo.classList.remove('active'));
+            photos[index].classList.add('active');
+        }
+        
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            currentPhoto = (currentPhoto + 1) % photos.length;
+            showPhoto(currentPhoto);
+        });
+        
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            currentPhoto = (currentPhoto - 1 + photos.length) % photos.length;
+            showPhoto(currentPhoto);
+        });
+        
+        // Floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 200 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+            document.getElementById('hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+        
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
